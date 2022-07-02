@@ -10,14 +10,14 @@ use Symfony\Component\Process\Process;
 
 class InstallCommand extends Command
 {
-    use InstallsApiStack, InstallsBladeStack, InstallsInertiaStacks;
+    use InstallsApiStack, InstallsBladeStack, InstallsInertiaStacks, InstallsApiSpaStack;
 
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'breeze:install {stack=blade : The development stack that should be installed (blade,react,vue,api)}
+    protected $signature = 'breeze:install {stack=blade : The development stack that should be installed (blade,react,vue,api,api-spa)}
                             {--inertia : Indicate that the Vue Inertia stack should be installed (Deprecated)}
                             {--pest : Indicate that Pest should be installed}
                             {--ssr : Indicates if Inertia SSR support should be installed}

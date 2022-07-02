@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Breeze;
+namespace Wasyl144\Breeze;
 
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;

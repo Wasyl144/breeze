@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Breeze\Console;
+namespace Wasyl144\Breeze\Traits;
 
 use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Process\Process;
@@ -34,35 +34,35 @@ trait InstallsInertiaStacks
 
         // Controllers...
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers/Auth'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-common/app/Http/Controllers/Auth', app_path('Http/Controllers/Auth'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/inertia-common/app/Http/Controllers/Auth', app_path('Http/Controllers/Auth'));
 
         // Requests...
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Requests/Auth'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/App/Http/Requests/Auth', app_path('Http/Requests/Auth'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/default/App/Http/Requests/Auth', app_path('Http/Requests/Auth'));
 
         // Middleware...
         $this->installMiddlewareAfter('SubstituteBindings::class', '\App\Http\Middleware\HandleInertiaRequests::class');
 
-        copy(__DIR__.'/../../stubs/inertia-common/app/Http/Middleware/HandleInertiaRequests.php', app_path('Http/Middleware/HandleInertiaRequests.php'));
+        copy(__DIR__ . '/../../stubs/inertia-common/app/Http/Middleware/HandleInertiaRequests.php', app_path('Http/Middleware/HandleInertiaRequests.php'));
 
         // Views...
-        copy(__DIR__.'/../../stubs/inertia-common/resources/views/app.blade.php', resource_path('views/app.blade.php'));
+        copy(__DIR__ . '/../../stubs/inertia-common/resources/views/app.blade.php', resource_path('views/app.blade.php'));
 
         // Components + Pages...
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Components'));
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Layouts'));
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages'));
 
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-vue/resources/js/Components', resource_path('js/Components'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-vue/resources/js/Layouts', resource_path('js/Layouts'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-vue/resources/js/Pages', resource_path('js/Pages'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/inertia-vue/resources/js/Components', resource_path('js/Components'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/inertia-vue/resources/js/Layouts', resource_path('js/Layouts'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/inertia-vue/resources/js/Pages', resource_path('js/Pages'));
 
         // Tests...
         $this->installTests();
 
         // Routes...
-        copy(__DIR__.'/../../stubs/inertia-common/routes/web.php', base_path('routes/web.php'));
-        copy(__DIR__.'/../../stubs/inertia-common/routes/auth.php', base_path('routes/auth.php'));
+        copy(__DIR__ . '/../../stubs/inertia-common/routes/web.php', base_path('routes/web.php'));
+        copy(__DIR__ . '/../../stubs/inertia-common/routes/auth.php', base_path('routes/auth.php'));
 
         // "Dashboard" Route...
         $this->replaceInFile('/home', '/dashboard', resource_path('js/Pages/Welcome.vue'));
@@ -70,12 +70,12 @@ trait InstallsInertiaStacks
         $this->replaceInFile('/home', '/dashboard', app_path('Providers/RouteServiceProvider.php'));
 
         // Tailwind / Vite...
-        copy(__DIR__.'/../../stubs/default/resources/css/app.css', resource_path('css/app.css'));
-        copy(__DIR__.'/../../stubs/default/postcss.config.js', base_path('postcss.config.js'));
-        copy(__DIR__.'/../../stubs/inertia-common/tailwind.config.js', base_path('tailwind.config.js'));
-        copy(__DIR__.'/../../stubs/inertia-common/jsconfig.json', base_path('jsconfig.json'));
-        copy(__DIR__.'/../../stubs/inertia-vue/vite.config.js', base_path('vite.config.js'));
-        copy(__DIR__.'/../../stubs/inertia-vue/resources/js/app.js', resource_path('js/app.js'));
+        copy(__DIR__ . '/../../stubs/default/resources/css/app.css', resource_path('css/app.css'));
+        copy(__DIR__ . '/../../stubs/default/postcss.config.js', base_path('postcss.config.js'));
+        copy(__DIR__ . '/../../stubs/inertia-common/tailwind.config.js', base_path('tailwind.config.js'));
+        copy(__DIR__ . '/../../stubs/inertia-common/jsconfig.json', base_path('jsconfig.json'));
+        copy(__DIR__ . '/../../stubs/inertia-vue/vite.config.js', base_path('vite.config.js'));
+        copy(__DIR__ . '/../../stubs/inertia-vue/resources/js/app.js', resource_path('js/app.js'));
 
         if ($this->option('ssr')) {
             $this->installInertiaVueSsrStack();
@@ -99,7 +99,7 @@ trait InstallsInertiaStacks
             ] + $packages;
         });
 
-        copy(__DIR__.'/../../stubs/inertia-vue/resources/js/ssr.js', resource_path('js/ssr.js'));
+        copy(__DIR__ . '/../../stubs/inertia-vue/resources/js/ssr.js', resource_path('js/ssr.js'));
         $this->replaceInFile("input: 'resources/js/app.js',", "input: 'resources/js/app.js',".PHP_EOL."            ssr: 'resources/js/ssr.js',", base_path('vite.config.js'));
 
         (new Process([$this->phpBinary(), 'artisan', 'vendor:publish', '--provider=Inertia\ServiceProvider', '--force'], base_path()))
@@ -142,19 +142,19 @@ trait InstallsInertiaStacks
 
         // Controllers...
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers/Auth'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-common/app/Http/Controllers/Auth', app_path('Http/Controllers/Auth'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/inertia-common/app/Http/Controllers/Auth', app_path('Http/Controllers/Auth'));
 
         // Requests...
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Requests/Auth'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/App/Http/Requests/Auth', app_path('Http/Requests/Auth'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/default/App/Http/Requests/Auth', app_path('Http/Requests/Auth'));
 
         // Middleware...
         $this->installMiddlewareAfter('SubstituteBindings::class', '\App\Http\Middleware\HandleInertiaRequests::class');
 
-        copy(__DIR__.'/../../stubs/inertia-common/app/Http/Middleware/HandleInertiaRequests.php', app_path('Http/Middleware/HandleInertiaRequests.php'));
+        copy(__DIR__ . '/../../stubs/inertia-common/app/Http/Middleware/HandleInertiaRequests.php', app_path('Http/Middleware/HandleInertiaRequests.php'));
 
         // Views...
-        copy(__DIR__.'/../../stubs/inertia-common/resources/views/app.blade.php', resource_path('views/app.blade.php'));
+        copy(__DIR__ . '/../../stubs/inertia-common/resources/views/app.blade.php', resource_path('views/app.blade.php'));
         $this->replaceInFile("@vite('resources/js/app.js')", '@viteReactRefresh'.PHP_EOL."        @vite('resources/js/app.jsx')", resource_path('views/app.blade.php'));
 
         // Components + Pages...
@@ -162,16 +162,16 @@ trait InstallsInertiaStacks
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Layouts'));
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages'));
 
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-react/resources/js/Components', resource_path('js/Components'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-react/resources/js/Layouts', resource_path('js/Layouts'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-react/resources/js/Pages', resource_path('js/Pages'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/inertia-react/resources/js/Components', resource_path('js/Components'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/inertia-react/resources/js/Layouts', resource_path('js/Layouts'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/inertia-react/resources/js/Pages', resource_path('js/Pages'));
 
         // Tests...
         $this->installTests();
 
         // Routes...
-        copy(__DIR__.'/../../stubs/inertia-common/routes/web.php', base_path('routes/web.php'));
-        copy(__DIR__.'/../../stubs/inertia-common/routes/auth.php', base_path('routes/auth.php'));
+        copy(__DIR__ . '/../../stubs/inertia-common/routes/web.php', base_path('routes/web.php'));
+        copy(__DIR__ . '/../../stubs/inertia-common/routes/auth.php', base_path('routes/auth.php'));
 
         // "Dashboard" Route...
         $this->replaceInFile('/home', '/dashboard', resource_path('js/Pages/Welcome.jsx'));
@@ -179,12 +179,12 @@ trait InstallsInertiaStacks
         $this->replaceInFile('/home', '/dashboard', app_path('Providers/RouteServiceProvider.php'));
 
         // Tailwind / Vite...
-        copy(__DIR__.'/../../stubs/default/resources/css/app.css', resource_path('css/app.css'));
-        copy(__DIR__.'/../../stubs/default/postcss.config.js', base_path('postcss.config.js'));
-        copy(__DIR__.'/../../stubs/inertia-common/tailwind.config.js', base_path('tailwind.config.js'));
-        copy(__DIR__.'/../../stubs/inertia-common/jsconfig.json', base_path('jsconfig.json'));
-        copy(__DIR__.'/../../stubs/inertia-react/vite.config.js', base_path('vite.config.js'));
-        copy(__DIR__.'/../../stubs/inertia-react/resources/js/app.jsx', resource_path('js/app.jsx'));
+        copy(__DIR__ . '/../../stubs/default/resources/css/app.css', resource_path('css/app.css'));
+        copy(__DIR__ . '/../../stubs/default/postcss.config.js', base_path('postcss.config.js'));
+        copy(__DIR__ . '/../../stubs/inertia-common/tailwind.config.js', base_path('tailwind.config.js'));
+        copy(__DIR__ . '/../../stubs/inertia-common/jsconfig.json', base_path('jsconfig.json'));
+        copy(__DIR__ . '/../../stubs/inertia-react/vite.config.js', base_path('vite.config.js'));
+        copy(__DIR__ . '/../../stubs/inertia-react/resources/js/app.jsx', resource_path('js/app.jsx'));
         unlink(resource_path('js/app.js'));
 
         $this->replaceInFile('.vue', '.jsx', base_path('tailwind.config.js'));
@@ -210,7 +210,7 @@ trait InstallsInertiaStacks
             ] + $packages;
         });
 
-        copy(__DIR__.'/../../stubs/inertia-react/resources/js/ssr.jsx', resource_path('js/ssr.jsx'));
+        copy(__DIR__ . '/../../stubs/inertia-react/resources/js/ssr.jsx', resource_path('js/ssr.jsx'));
         $this->replaceInFile("input: 'resources/js/app.jsx',", "input: 'resources/js/app.jsx',".PHP_EOL."            ssr: 'resources/js/ssr.jsx',", base_path('vite.config.js'));
 
         (new Process([$this->phpBinary(), 'artisan', 'vendor:publish', '--provider=Inertia\ServiceProvider', '--force'], base_path()))
